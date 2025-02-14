@@ -55,8 +55,6 @@ function NetworkTools(socket) {
         }
       }
 
-      console.log(`Session ${this._session.id} version: ${version}`)
-      console.log(`Session ${this._session.id} available methods: `, methods)
 
       this._session.offset = offset
 
@@ -71,7 +69,6 @@ function NetworkTools(socket) {
         }
       }
 
-      console.log(`Selected verification method [${method}]`)
 
       this._session.method = method
 
@@ -226,7 +223,7 @@ function NetworkTools(socket) {
       req.port = buf.readUInt16BE(offset)
       offset += portLen
 
-      console.log(`Session ${this._session.id} request parsed`, req)
+
 
       this._session.offset = offset
 
@@ -269,13 +266,13 @@ function NetworkTools(socket) {
             this._socket.pipe(targetSocket).pipe(this._socket)
           })
           .on('error', err => {
-            console.error(`Session ${this._session.id} -> target error:`, err)
+            
           })
           .on('end', () => {
-            console.log(`Session ${this._session.id} -> target end`)
+            
           })
           .on('close', () => {
-            console.log(`Session ${this._session.id} -> target close`)
+            
           })
 
           this._session.targetSocket = targetSocket
@@ -336,7 +333,7 @@ function NetworkTools(socket) {
             break
           case definitions.PHASES.DATA_TRANSFER:
           default:
-            console.log(`Current state [${this._session.state}]`, this._session)
+            
         }
       }
     }
